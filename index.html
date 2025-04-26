@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎥 Premium YouTube Channels Marketplace 🚀</title>
+    <style>
+        :root {
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --accent-red: #ff0033;
+            --accent-yellow: #ffcc00;
+            --text-primary: #f0f0f0;
+            --text-secondary: #b0b0b0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--darker-bg) 0%, #1e0000 100%);
+            padding: 30px 0;
+            text-align: center;
+            border-bottom: 3px solid var(--accent-red);
+            margin-bottom: 40px;
+            animation: headerGlow 8s infinite alternate;
+        }
+        
+        @keyframes headerGlow {
+            0% { box-shadow: 0 0 20px rgba(255, 0, 51, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 204, 0, 0.4); }
+            100% { box-shadow: 0 0 20px rgba(255, 0, 51, 0.3); }
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.8em;
+            color: var(--accent-yellow);
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+        
+        .tagline {
+            color: var(--text-secondary);
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .channel-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--accent-red);
+        }
+        
+        .channel-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 0, 51, 0.2);
+        }
+        
+        .channel-banner {
+            height: 120px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .channel-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(26, 26, 26, 0.9), transparent);
+        }
+        
+        .channel-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-yellow);
+            position: absolute;
+            bottom: -40px;
+            left: 20px;
+            z-index: 2;
+            object-fit: cover;
+            background-color: var(--card-bg);
+        }
+        
+        .channel-info {
+            padding: 50px 20px 20px;
+        }
+        
+        .channel-name {
+            font-size: 1.4em;
+            margin: 0 0 5px;
+            color: var(--accent-yellow);
+        }
+        
+        .channel-stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+        
+        .channel-desc {
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            min-height: 60px;
+        }
+        
+        .channel-price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--accent-yellow);
+            margin-bottom: 20px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-view {
+            background-color: var(--accent-red);
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-buy {
+            background-color: var(--accent-yellow);
+            color: #333;
+            flex: 1;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 204, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--accent-red);
+            color: var(--text-primary);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--accent-red);
+            color: white;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent-yellow);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: var(--darker-bg);
+            border-top: 1px solid var(--accent-red);
+        }
+        
+        @media (max-width: 768px) {
+            .channel-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🎥 Y-TUBE 🚀</h1>
+            <h6><p class="tagline">🔥 Buy established channels with instant transfer & 100% security 🔥</p><h6>
+        </div>
+    </header>
+    
+   <div class="channel-grid">
+           
+           
+           
+           
+           
+           <!-- Channel 1 -->
+           
+           
+           
+            <div class="channel-card">
+                <div class="channel-banner" style="background-image: url('https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg');">
+                    <img src="https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg" alt="Channel Avatar" class="channel-avatar">
+                </div>
+                <div class="channel-info">
+                    <h3 class="channel-name">Epic Gameplays</h3>
+                    <div class="channel-stats">
+                        <span>🔔 125K subs</span>
+                       
+                    </div>
+                    <p class="channel-desc">Premium gaming channel focused on FPS games with high production value and daily uploads.</p>
+                    <div class="channel-price">$2,499 </div>
+                    <div class="button-group">
+                        <button class="btn btn-view" onclick="window.open('https://youtube.com', '_blank')">👁️ View Channel</button>
+                        <button class="btn btn-buy" onclick="window.open('#', '_blank')">💌 Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+            <!-- Channel 2 -->
+            
+       <div class="channel-card">
+                <div class="channel-banner" style="background-image: url('https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg');">
+                    <img src="https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg" alt="Channel Avatar" class="channel-avatar">
+                </div>
+                <div class="channel-info">
+                    <h3 class="channel-name">Epic Gameplays</h3>
+                    <div class="channel-stats">
+                        <span>🔔 125K subs</span>
+                       
+                    </div>
+                    <p class="channel-desc">Premium gaming channel focused on FPS games with high production value and daily uploads.</p>
+                    <div class="channel-price">$2,499 </div>
+                    <div class="button-group">
+                        <button class="btn btn-view" onclick="window.open('https://youtube.com', '_blank')">👁️ View Channel</button>
+                        <button class="btn btn-buy" onclick="window.open('#', '_blank')">💌 Buy Now</button>
+                    </div>
+                </div>
+            </div>
+       
+       
+       
+       
+       
+       
+       
+       </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            
+            <p>🔒 Secure transactions | ⚡ Instant transfer | 🤝 Trusted by 1000+ buyers</p>
+            <p><h6>⚠️ Disclaimer: TubeMarket acts as a marketplace for YouTube channel transactions. We verify all listings but recommend due diligence before purchasing. YouTube's Terms of Service apply to all channel transfers.</h6></p>
+            <p>© 2023 Y-TUBE YOUTUBE CHANNEL SELLER. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // In a real implementation, you would filter channels here
+                // For demo, we'll just add a loading animation
+                const originalText = this.innerHTML;
+                this.innerHTML = `<span class="loading"></span> Loading...`;
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                }, 1000);
+            });
+        });
+        
+        // Animate buttons on hover
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
